@@ -1,0 +1,71 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Run Python Tests (CI)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Unit Tests
+        run: |
+          python -m unittest test_server.py
+
+  deploy:
+    name: Deploy to Contabo VM (CD)
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          port: 22
+          script: |
+            echo "Conectado al servidor. Iniciando actualización de Comidas..."
+            
+            # Ensure the deployment directory exists on the host
+            if [ ! -d "/root/comidas" ]; then
+              echo "Creando directorio /root/comidas y clonando repositorio..."
+              git clone https://github.com/daosrl-apps/comidas.git /root/comidas
+            fi
+            
+            cd /root/comidas
+            
+            # Fetch latest code
+            git fetch --all
+            git reset --hard origin/master
+            
+            # Ensure data directory exists on the host with open permissions
+            mkdir -p data
+            chmod -R 777 data
+            
+            # Stop existing containers to ensure clean state
+            docker compose down
+            
+            # Rebuild and run compose services with force-recreate
+            docker compose up -d --build --force-recreate
+            
+            echo "¡Despliegue de Comidas finalizado con éxito!"

@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+data/
+Datos_test.json
+*.tmp
+*.log
+.vscode/
+.idea/
+.DS_Store

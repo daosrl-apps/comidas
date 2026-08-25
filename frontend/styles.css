@@ -1,0 +1,1217 @@
+/* ==========================================================================
+   DESIGN SYSTEM & VARIABLES (Warm & Sweet Theme)
+   ========================================================================== */
+:root {
+    --font-primary: 'Quicksand', sans-serif;
+    --font-title: 'Outfit', sans-serif;
+
+    /* Curated Color Palette */
+    --color-bg: hsl(36, 45%, 97%);        /* Warm Vanilla / Soft cream */
+    --color-surface: hsl(0, 0%, 100%);     /* Pure White */
+    --color-surface-trans: rgba(255, 255, 255, 0.85);
+    
+    --color-text-main: hsl(15, 25%, 22%);   /* Deep Cocoa Brown (Soft contrast) */
+    --color-text-muted: hsl(15, 12%, 45%);  /* Muted Warm Grey */
+    
+    --color-primary: hsl(14, 75%, 63%);     /* Sweet Terracotta / Peach Coral */
+    --color-primary-hover: hsl(14, 75%, 55%);
+    --color-primary-light: hsl(14, 85%, 95%);
+    
+    --color-secondary: hsl(120, 22%, 47%);   /* Warm Sage Green */
+    --color-secondary-hover: hsl(120, 22%, 40%);
+    --color-secondary-light: hsl(120, 45%, 95%);
+    
+    --color-accent: hsl(38, 92%, 58%);       /* Honey Gold */
+    --color-accent-light: hsl(38, 95%, 95%);
+    
+    --color-danger: hsl(354, 70%, 54%);      /* Sweet Strawberry Red */
+    --color-danger-light: hsl(354, 85%, 96%);
+
+    --color-border: hsl(30, 20%, 90%);
+    --color-border-focus: hsl(14, 75%, 80%);
+
+    /* Shadows & Border Radius */
+    --shadow-sm: 0 4px 12px -2px rgba(139, 90, 75, 0.05);
+    --shadow-md: 0 12px 28px -4px rgba(139, 90, 75, 0.08);
+    --shadow-lg: 0 20px 40px -8px rgba(139, 90, 75, 0.12);
+    
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 30px;
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   BASE & RESET
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(var(--color-primary-light) 1.5px, transparent 1.5px),
+        radial-gradient(var(--color-primary-light) 1.5px, var(--color-bg) 1.5px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    min-height: 100vh;
+    padding: 20px 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: 700;
+}
+
+button, input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+.app-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--color-surface-trans);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 24px;
+    min-height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-icon {
+    width: 52px;
+    height: 52px;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 16px -4px rgba(231, 111, 81, 0.4);
+    transform: rotate(-3deg);
+    transition: var(--transition-smooth);
+}
+
+.logo-area:hover .logo-icon {
+    transform: rotate(3deg) scale(1.05);
+}
+
+.logo-icon i {
+    width: 28px;
+    height: 28px;
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+    color: var(--color-text-main);
+    line-height: 1.2;
+}
+
+.app-header .subtitle {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+/* Navigation Tabs */
+.app-tabs {
+    display: flex;
+    gap: 8px;
+    background-color: rgba(139, 90, 75, 0.05);
+    padding: 6px;
+    border-radius: var(--radius-md);
+    margin-bottom: 24px;
+}
+
+.tab-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 16px;
+    font-family: var(--font-title);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--color-text-muted);
+    transition: var(--transition-smooth);
+}
+
+.tab-btn i {
+    width: 18px;
+    height: 18px;
+}
+
+.tab-btn:hover {
+    color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.tab-btn.active {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 12px -2px rgba(231, 111, 81, 0.35);
+}
+
+/* Main content views */
+.app-main {
+    flex-grow: 1;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   COMPONENTS & ELEMENTS
+   ========================================================================== */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.section-header h2 {
+    font-size: 1.35rem;
+    color: var(--color-text-main);
+}
+
+.section-description {
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-title);
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none !important;
+}
+
+.btn i {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 6px 16px -4px rgba(231, 111, 81, 0.45);
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-secondary-hover);
+    box-shadow: 0 6px 16px -4px rgba(129, 164, 131, 0.45);
+}
+
+.btn-success {
+    background-color: hsl(150, 40%, 40%);
+    color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+    background-color: hsl(150, 40%, 35%);
+    box-shadow: 0 6px 16px -4px rgba(40, 167, 69, 0.45);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--color-border);
+    color: var(--color-text-main);
+    box-shadow: none;
+}
+
+.btn-outline:hover:not(:disabled) {
+    background-color: rgba(139, 90, 75, 0.05);
+    border-color: var(--color-text-muted);
+}
+
+.btn-ai {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 4px 12px -2px rgba(243, 156, 18, 0.35);
+}
+
+.btn-ai:hover {
+    opacity: 0.95;
+    box-shadow: 0 6px 16px -2px rgba(243, 156, 18, 0.45);
+}
+
+.btn-xs {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+}
+
+.btn-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: var(--transition-smooth);
+}
+
+.btn-icon:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-light);
+}
+
+/* Search Bar */
+.search-bar {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 14px 16px 14px 46px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-sm);
+}
+
+.search-bar input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 4px var(--color-primary-light);
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+}
+
+/* ==========================================================================
+   RECETARIO: TAB 1 (COMIDAS GRID)
+   ========================================================================== */
+.grid-comidas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card-comida {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-comida:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-focus);
+}
+
+.card-comida::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: var(--color-primary);
+    opacity: 0.8;
+}
+
+.card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.card-comida h3 {
+    font-size: 1.15rem;
+    color: var(--color-text-main);
+    line-height: 1.3;
+}
+
+/* Action Buttons inside Card */
+.card-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-card-action {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(139, 90, 75, 0.04);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.btn-card-action:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.btn-card-action.delete:hover {
+    background-color: var(--color-danger-light);
+    color: var(--color-danger);
+}
+
+.btn-card-action i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Ingredients pill list */
+.card-ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.ing-pill {
+    background-color: rgba(139, 90, 75, 0.05);
+    border: 1px solid rgba(139, 90, 75, 0.08);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+}
+
+/* Collapsible Recipe Block */
+.recipe-collapsible {
+    border-top: 1px dashed var(--color-border);
+    padding-top: 12px;
+    margin-top: 4px;
+}
+
+.btn-toggle-recipe {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 0;
+}
+
+.btn-toggle-recipe i {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s;
+}
+
+.btn-toggle-recipe.active i {
+    transform: rotate(180deg);
+}
+
+.recipe-text-content {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    white-space: pre-line;
+    background-color: var(--color-bg);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.hidden-height {
+    display: none;
+}
+
+/* ==========================================================================
+   PLANIFICADOR: TAB 2 (MENU SEMANAL)
+   ========================================================================== */
+.program-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.day-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.day-title {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary-light);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.meal-block-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .meal-block-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+.meal-block {
+    background-color: var(--color-bg);
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--color-accent);
+}
+
+.meal-block.cena {
+    border-left-color: var(--color-primary);
+}
+
+.meal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.meal-header i {
+    width: 18px;
+    height: 18px;
+    color: var(--color-text-muted);
+}
+
+/* Custom Select in Plan */
+.select-comida {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    margin-bottom: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.select-comida:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+/* Comensales Selection List */
+.comensales-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.comensales-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.comensal-checkbox-label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 700;
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-border);
+    color: var(--color-text-muted);
+    user-select: none;
+    transition: var(--transition-smooth);
+}
+
+.comensal-checkbox-label:hover {
+    border-color: var(--color-text-muted);
+    background-color: rgba(139, 90, 75, 0.02);
+}
+
+/* Actual input checkbox is hidden */
+.comensal-checkbox-input {
+    display: none;
+}
+
+/* Checked styling */
+.comensal-checkbox-input:checked + .comensal-checkbox-label {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: white;
+    box-shadow: 0 4px 8px -2px rgba(129, 164, 131, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Cena specific colors for variety if desired, but we keep it cohesive */
+.meal-block.cena .comensal-checkbox-input:checked + .comensal-checkbox-label {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 8px -2px rgba(231, 111, 81, 0.4);
+}
+
+/* ==========================================================================
+   LISTA DE COMPRAS: TAB 3 (MRP)
+   ========================================================================== */
+.compra-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card-compra {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+}
+
+.compra-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.compra-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background-color: var(--color-bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.compra-item:hover {
+    border-color: var(--color-border-focus);
+    background-color: var(--color-surface);
+}
+
+.compra-item-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-secondary);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.compra-item-text {
+    flex-grow: 1;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.compra-item-qty {
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--color-secondary);
+    background-color: var(--color-secondary-light);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+/* Line-through when checked */
+.compra-item.checked {
+    opacity: 0.6;
+}
+
+.compra-item.checked .compra-item-text {
+    text-decoration: line-through;
+    color: var(--color-text-muted);
+}
+
+.compra-item.checked .compra-item-qty {
+    background-color: var(--color-border);
+    color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   MODAL WINDOWS
+   ========================================================================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(61, 45, 42, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.modal-container {
+    position: relative;
+    background-color: var(--color-surface);
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow-y: auto;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    z-index: 1001;
+}
+
+.modal.open .modal-container {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.modal-header h3 {
+    font-size: 1.25rem;
+    color: var(--color-text-main);
+}
+
+.btn-close-modal {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+}
+
+.btn-close-modal:hover {
+    color: var(--color-danger);
+}
+
+.modal-form {
+    padding: 20px 24px;
+}
+
+/* Form inputs & structure */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+}
+
+.required {
+    color: var(--color-danger);
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group textarea {
+    padding: 12px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.form-help {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+}
+
+/* Flex Row Input with Button */
+.input-with-action {
+    display: flex;
+    gap: 8px;
+}
+
+.input-with-action input {
+    flex-grow: 1;
+}
+
+.input-with-action button {
+    flex-shrink: 0;
+}
+
+/* Dynamic ingredients rows in modal */
+.ingredients-section {
+    border-top: 1px dashed var(--color-border);
+    padding-top: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ingredients-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.ingredients-header h4 {
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+}
+
+.ingredients-header .subtitle {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.ingredients-rows-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.ingredient-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.ingredient-row input[type="text"] {
+    flex: 3;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+}
+
+.ingredient-row input[type="number"] {
+    flex: 1;
+    width: 60px;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+}
+
+.ingredient-row select {
+    flex: 1.5;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: var(--color-surface);
+}
+
+.btn-delete-row {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-delete-row:hover {
+    color: var(--color-danger);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+}
+
+/* IA loading spinner indicator */
+.ia-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.spinner-small {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--color-primary-light);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   SIDEBAR: AJUSTES
+   ========================================================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.sidebar-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(61, 45, 42, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.sidebar-container {
+    position: relative;
+    background-color: var(--color-surface);
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    box-shadow: var(--shadow-lg);
+    transform: translateX(40px);
+    transition: transform 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.open .sidebar-container {
+    transform: translateX(0);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-header h3 {
+    font-size: 1.25rem;
+    color: var(--color-text-main);
+}
+
+.btn-close-sidebar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+}
+
+.btn-close-sidebar:hover {
+    color: var(--color-danger);
+}
+
+.sidebar-form {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.sidebar-description {
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+}
+
+.password-input-container {
+    position: relative;
+    display: flex;
+}
+
+.password-input-container input {
+    width: 100%;
+    padding-right: 44px;
+}
+
+.btn-icon-inside {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon-inside:hover {
+    color: var(--color-primary);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.sidebar-actions {
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   STATES & TOASTS
+   ========================================================================== */
+/* Loading states */
+.loading-state, .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+.empty-icon {
+    width: 50px;
+    height: 50px;
+    color: var(--color-text-muted);
+    opacity: 0.5;
+    margin-bottom: 16px;
+}
+
+.empty-state h3 {
+    font-size: 1.1rem;
+    color: var(--color-text-main);
+    margin-bottom: 6px;
+}
+
+.empty-state p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    max-width: 320px;
+}
+
+/* Toast Floating Alerts */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    background-color: var(--color-text-main);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 2000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.toast.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+}
+
+.toast i {
+    width: 18px;
+    height: 18px;
+}
+
+.toast.success {
+    background-color: var(--color-secondary);
+}
+
+.toast.error {
+    background-color: var(--color-danger);
+}
+
+.toast.info {
+    background-color: var(--color-primary);
+}
