@@ -46,6 +46,21 @@ jobs:
           script: |
             echo "Conectado al servidor. Iniciando actualización de Comidas..."
             
+            # Asegurar certificado Let's Encrypt para comidas.daosrl.com.ar
+            if [ ! -d "/etc/letsencrypt/live/comidas.daosrl.com.ar" ]; then
+              echo "==> Certificado no encontrado. Obteniendo certificado SSL Let's Encrypt..."
+              # Detener temporalmente los proxies para liberar puertos 80/443
+              docker stop app-dao-ops-nginx-1 2>/dev/null || true
+              docker stop dao-metricas-nginx 2>/dev/null || true
+              
+              apt-get update -y && apt-get install -y certbot || true
+              certbot certonly --standalone -d comidas.daosrl.com.ar --non-interactive --agree-tos --register-unsafely-without-email || true
+              
+              # Levantar de nuevo los proxies
+              docker start app-dao-ops-nginx-1 2>/dev/null || true
+              docker start dao-metricas-nginx 2>/dev/null || true
+            fi
+
             # Ensure the deployment directory exists on the host
             if [ ! -d "/root/comidas" ]; then
               echo "Creando directorio /root/comidas y clonando repositorio..."
