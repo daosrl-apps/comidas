@@ -121,27 +121,26 @@ button, input, textarea, select {
     gap: 16px;
 }
 
-.logo-icon {
-    width: 52px;
-    height: 52px;
-    background-color: var(--color-primary);
-    color: white;
+.logo-avatar {
+    width: 56px;
+    height: 56px;
     border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 16px -4px rgba(231, 111, 81, 0.4);
+    overflow: hidden;
+    box-shadow: 0 8px 16px -4px rgba(231, 111, 81, 0.3);
+    border: 2px solid var(--color-primary);
     transform: rotate(-3deg);
     transition: var(--transition-smooth);
+    display: flex;
 }
 
-.logo-area:hover .logo-icon {
+.logo-area:hover .logo-avatar {
     transform: rotate(3deg) scale(1.05);
 }
 
-.logo-icon i {
-    width: 28px;
-    height: 28px;
+.logo-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .app-header h1 {
