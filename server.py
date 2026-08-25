@@ -340,8 +340,8 @@ def buscar_receta_ia():
         }}
         """
         
-        # Use a stable Gemini 1.5 Flash model
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        # Use the modern Gemini 3.6 Flash model (active in 2026)
+        model = genai.GenerativeModel('gemini-3.6-flash')
         response = model.generate_content(prompt)
         
         resp_text = response.text.strip()
